@@ -259,3 +259,12 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/Temp
+/ProjectSettings
+/Library
+/Assets/Animations/PlayerAnimations
+/Assets/Fonts
+/Assets/Free Platform Game Assets
+/Assets/Materials
+/Assets/Scenes
+/Assets/Sprites/Tiles
