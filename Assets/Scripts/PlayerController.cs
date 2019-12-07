@@ -5,12 +5,9 @@ public class PlayerController : MonoBehaviour
 {
     public float Speed;
     public float JumpForce;
-    [Space(10)]
-    public Transform GroundChecker;
-    public float GroundDistance;
+    public GroundChecker GroundChecker;
 
     Rigidbody2D _rigidbody;
-    Transform _groundChecker;
     float _horizontalInput;
     bool _jump;
 
@@ -44,19 +41,9 @@ public class PlayerController : MonoBehaviour
         {
             _jump = false;
 
-            if(IsGrounded)
+            if(GroundChecker.IsGrounded)
                 _rigidbody.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
         }
 
     }
-
-    bool IsGrounded
-    {
-        get
-        {
-            var hit = Physics2D.Raycast(GroundChecker.transform.position, -GroundChecker.up, GroundDistance);
-            return hit.collider != null;
-        }
-    }
-
 }
