@@ -61,8 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraFollower.cs" />
+    <Compile Include="Assets\Scripts\CoinPicker.cs" />
     <Compile Include="Assets\Scripts\LevelRestarter.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\TriggerProvider.cs" />
     <Compile Include="Assets\Scripts\VelocityToAnimationConverter.cs" />
     <None Include="Assets\Fonts\OpenSans\License!.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
