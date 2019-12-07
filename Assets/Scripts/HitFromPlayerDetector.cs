@@ -3,29 +3,39 @@ using UnityEngine;
 
 public class HitFromPlayerDetector : MonoBehaviour
 {
+    public bool AccurateCalculation;
+
     public event Action PlayerHitsFromSide;
     public event Action PlayerHitsFromAbove;
     public event Action PlayerHitsFromBelow;
-
-    float _playerXCoordMin;
-    float _playerXCoordMax;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        float thisX = this.transform.position.x;
-        _playerXCoordMin = thisX - this.transform.lossyScale.x;
-        _playerXCoordMax = thisX + this.transform.lossyScale.x;
-    }
 
     // OnCollisionEnter2D is called when this collider2D/rigidbody2D has begun touching another rigidbody2D/collider2D (2D physics only)
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
+            float thisX = this.transform.position.x;
+
+            float lowerXbound;
+            float higherXbound;
+
+            if (AccurateCalculation)
+            {
+                float halfSize = this.transform.lossyScale.x / 2;
+                lowerXbound = thisX - halfSize;
+                higherXbound = thisX + halfSize;
+            }
+            else
+            {
+                float fullSize = this.transform.lossyScale.x;
+                lowerXbound = thisX - fullSize;
+                higherXbound = thisX + fullSize;
+            }
+
             var player = collision.gameObject;
             float playerX = player.transform.position.x;
-            bool playerHitsInXBounds = _playerXCoordMin < playerX && playerX < _playerXCoordMax;
+
+            bool playerHitsInXBounds = lowerXbound < playerX && playerX < higherXbound;
 
             if (!playerHitsInXBounds)
             {
