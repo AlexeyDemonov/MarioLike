@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraFollower.cs" />
+    <Compile Include="Assets\Scripts\ChestController.cs" />
     <Compile Include="Assets\Scripts\CoinPicker.cs" />
     <Compile Include="Assets\Scripts\LevelRestarter.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
