@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(HitFromPlayerDetector))]
+[RequireComponent(typeof(Collider2D))]
 public class EnemyController : MonoBehaviour
 {
     public float Speed;
@@ -23,12 +24,12 @@ public class EnemyController : MonoBehaviour
 
     void HandleHitFromAbove()
     {
-        //TODO
+        GetComponent<Collider2D>().enabled = false;
     }
 
     void HandlePlayerTouchFromSide()
     {
-        //TODO
+        (GameObject.FindGameObjectWithTag("Player")?.GetComponent(typeof(PlayerDamager)) as PlayerDamager)?.HandleDamage();
     }
 
     // Update is called once per frame
