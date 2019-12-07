@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(HitFromPlayerDetector))]
 public class ChestController : MonoBehaviour
 {
     public Animator ChestAnimator;
@@ -12,8 +13,6 @@ public class ChestController : MonoBehaviour
 
     int _coinCount;
     Vector3 _coinInstantiatePos;
-    float _playerXCoordMin;
-    float _playerXCoordMax;
 
     // Start is called just before any of the Update methods is called the first time
     private void Start()
@@ -24,33 +23,22 @@ public class ChestController : MonoBehaviour
             this.transform.position.y + (this.transform.lossyScale.y / 2),
             this.transform.position.z);
 
-        float thisX = this.transform.position.x;
-        _playerXCoordMin = thisX - this.transform.lossyScale.x;
-        _playerXCoordMax = thisX + this.transform.lossyScale.x;
+        GetComponent<HitFromPlayerDetector>().PlayerHitsFromBelow += HandlePlayerHitFromBelow;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void HandlePlayerHitFromBelow()
     {
-        if(_coinCount > 0 && collision.gameObject.tag == "Player")
+        if(_coinCount > 0)
         {
-            float playerY = collision.transform.position.y;
-            float playerX = collision.transform.position.x;
+            ChestAnimator.SetTrigger(TriggerName);
 
-            bool playerHitsFromBelow = playerY < this.transform.position.y;
-            bool playerHitsInXBounds = _playerXCoordMin < playerX && playerX < _playerXCoordMax;
+            var instance = Instantiate<GameObject>(Coin, _coinInstantiatePos, Quaternion.identity);
+            var coinRB = instance.GetComponent<Rigidbody2D>();
+            coinRB.AddForce(
+                new Vector2 (Random.Range((CoinXLaunchSpread * -1), CoinXLaunchSpread), CoinYLaunchForce),
+                ForceMode2D.Impulse);
 
-            if(playerHitsFromBelow && playerHitsInXBounds)
-            {
-                ChestAnimator.SetTrigger(TriggerName);
-
-                var instance = Instantiate<GameObject>(Coin, _coinInstantiatePos, Quaternion.identity);
-                var coinRB = instance.GetComponent<Rigidbody2D>();
-                coinRB.AddForce(
-                    new Vector2 (Random.Range((CoinXLaunchSpread * -1), CoinXLaunchSpread), CoinYLaunchForce),
-                    ForceMode2D.Impulse);
-
-                _coinCount--;
-            }
+            _coinCount--;
         }
     }
 

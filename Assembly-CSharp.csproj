@@ -64,12 +64,12 @@
     <Compile Include="Assets\Scripts\ChestController.cs" />
     <Compile Include="Assets\Scripts\CoinPicker.cs" />
     <Compile Include="Assets\Scripts\FallChecker.cs" />
+    <Compile Include="Assets\Scripts\HitFromPlayerDetector.cs" />
     <Compile Include="Assets\Scripts\LevelRestarter.cs" />
     <Compile Include="Assets\Scripts\OnFallDestroyer.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\TriggerProvider.cs" />
     <Compile Include="Assets\Scripts\VelocityToAnimationConverter.cs" />
-    <None Include="Assets\Fonts\OpenSans\License!.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Documents/MyUnityProjects/ITVDN_UnityEssential/UnityEss_Lesson01_t00_MarioLike/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
