@@ -5,11 +5,26 @@ public class PlayerController : MonoBehaviour
 {
     public float Speed;
     public float JumpForce;
-    public GroundChecker GroundChecker;
+    public GroundChecker[] GroundCheckers;
 
     Rigidbody2D _rigidbody;
     float _horizontalInput;
     bool _jump;
+
+    bool IsGrounded
+    {
+        get
+        {
+            foreach (var checker in GroundCheckers)
+            {
+                if(checker.IsGrounded)
+                    return true;
+            }
+
+            /*else*/
+            return false;
+        }
+    }
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -41,7 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             _jump = false;
 
-            if(GroundChecker.IsGrounded)
+            if(this.IsGrounded)
                 _rigidbody.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
         }
 
