@@ -13,13 +13,13 @@ public class GroundChecker : MonoBehaviour
     {
         _layerMask = 1 << 11;//Platforms
 
-        if(CoinsConsideredGround)
+        if (CoinsConsideredGround)
         {
             int coinsLayer = 1 << 12;
             _layerMask |= coinsLayer;
         }
 
-        if(EnemiesConsideredGround)
+        if (EnemiesConsideredGround)
         {
             int enemiesLayer = 1 << 13;
             _layerMask |= enemiesLayer;

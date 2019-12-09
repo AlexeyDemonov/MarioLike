@@ -62,7 +62,7 @@ public class VelocityToAnimationConverter : MonoBehaviour
                 //Are we jumping, falling or just running/staying?
                 float velocityY = Rigidbody.velocity.y;
 
-                if(velocityY > PoisitveYVelocityTreshold)
+                if (velocityY > PoisitveYVelocityTreshold)
                     newState = AnimState.Jump;
                 else if (velocityY < NegativeYVelocityTreshold)
                     newState = AnimState.Fall;
@@ -70,7 +70,7 @@ public class VelocityToAnimationConverter : MonoBehaviour
                     newState = velocityX != 0 ? AnimState.Run : AnimState.Idle;
             }
 
-            if(newState != _currentState)
+            if (newState != _currentState)
             {
                 Animator.SetTrigger(newState.ToString());
                 _currentState = newState;

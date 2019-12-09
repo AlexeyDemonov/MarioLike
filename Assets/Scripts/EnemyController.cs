@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
     {
         while (true)
         {
-            while(_idleCounter < _idleXCycles)
+            while (_idleCounter < _idleXCycles)
             {
                 _idleCounter++;
                 yield return _interCycleWait;
@@ -63,9 +63,9 @@ public class EnemyController : MonoBehaviour
             _idleCounter = 0;
             _idleXCycles = Random.Range(1, MaxIdleCycles + 1);
 
-            if(_goingLeft)
+            if (_goingLeft)
             {
-                while(!LeftArm.IsGrounded && LeftLeg.IsGrounded)
+                while (!LeftArm.IsGrounded && LeftLeg.IsGrounded)
                 {
                     _rigidbody.velocity = Vector2.left * Speed;
                     yield return _interCycleWait;

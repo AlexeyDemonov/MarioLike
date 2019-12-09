@@ -5,8 +5,10 @@ public class ChestController : MonoBehaviour
 {
     public Animator ChestAnimator;
     public string TriggerName;
+
     [Space(5)]
     public GameObject Coin;
+
     public int CoinsInside;
     public float CoinYLaunchForce;
     public float CoinXLaunchSpread;
@@ -28,19 +30,17 @@ public class ChestController : MonoBehaviour
 
     void HandlePlayerHitFromBelow()
     {
-        if(_coinCount > 0)
+        if (_coinCount > 0)
         {
             ChestAnimator.SetTrigger(TriggerName);
 
             var instance = Instantiate<GameObject>(Coin, _coinInstantiatePos, Quaternion.identity);
             var coinRB = instance.GetComponent<Rigidbody2D>();
             coinRB.AddForce(
-                new Vector2 (Random.Range((CoinXLaunchSpread * -1), CoinXLaunchSpread), CoinYLaunchForce),
+                new Vector2(Random.Range((CoinXLaunchSpread * -1), CoinXLaunchSpread), CoinYLaunchForce),
                 ForceMode2D.Impulse);
 
             _coinCount--;
         }
     }
-
-
 }

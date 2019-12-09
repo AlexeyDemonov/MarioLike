@@ -16,7 +16,6 @@ public class CoinPicker : MonoBehaviour
         CoinCounter.text = "0";
     }
 
-
     void HandleCoinTouch(Collider2D collider)
     {
         string tag = collider.gameObject.tag;

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
         {
             foreach (var checker in GroundCheckers)
             {
-                if(checker.IsGrounded)
+                if (checker.IsGrounded)
                     return true;
             }
 
@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _horizontalInput = Input.GetAxisRaw("Horizontal");
-        
-        if(Input.GetButtonDown("Jump") && _jump == false)
+
+        if (Input.GetButtonDown("Jump") && _jump == false)
         {
             _jump = true;
         }
@@ -52,13 +52,12 @@ public class PlayerController : MonoBehaviour
         if (_rigidbody.velocity != newVelocity)
             _rigidbody.velocity = newVelocity;
 
-        if(_jump)
+        if (_jump)
         {
             _jump = false;
 
-            if(this.IsGrounded)
+            if (this.IsGrounded)
                 _rigidbody.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
         }
-
     }
 }

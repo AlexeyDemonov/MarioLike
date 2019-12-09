@@ -12,7 +12,7 @@ public class HitFromPlayerDetector : MonoBehaviour
     // OnCollisionEnter2D is called when this collider2D/rigidbody2D has begun touching another rigidbody2D/collider2D (2D physics only)
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             float thisX = this.transform.position.x;
 
@@ -39,14 +39,14 @@ public class HitFromPlayerDetector : MonoBehaviour
 
             if (!playerHitsInXBounds)
             {
-               PlayerHitsFromSide?.Invoke();
+                PlayerHitsFromSide?.Invoke();
             }
             else/* if (playerHitsInXBounds)*/
             {
                 float playerY = player.transform.position.y;
                 bool playerHitsFromBelow = playerY < this.transform.position.y;
 
-                if(playerHitsFromBelow)
+                if (playerHitsFromBelow)
                     PlayerHitsFromBelow?.Invoke();
                 else
                     PlayerHitsFromAbove?.Invoke();
