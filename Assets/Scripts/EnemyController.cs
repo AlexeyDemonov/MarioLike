@@ -27,7 +27,6 @@ public class EnemyController : MonoBehaviour
     {
         _goingLeft = Random.Range(0, 2) == 0 ? true : false;
 
-        _idleXCycles = Random.Range(1, MaxIdleCycles + 1);
         _interCycleWait = new WaitForSeconds(CycleEveryXSeconds);
 
         _hitDetector = GetComponent<HitFromPlayerDetector>();
@@ -54,14 +53,14 @@ public class EnemyController : MonoBehaviour
     {
         while (true)
         {
+            _idleCounter = 0;
+            _idleXCycles = Random.Range(1, MaxIdleCycles + 1);
+
             while (_idleCounter < _idleXCycles)
             {
                 _idleCounter++;
                 yield return _interCycleWait;
             }
-
-            _idleCounter = 0;
-            _idleXCycles = Random.Range(1, MaxIdleCycles + 1);
 
             if (_goingLeft)
             {
