@@ -57,7 +57,10 @@ public class PlayerController : MonoBehaviour
             _jump = false;
 
             if (this.IsGrounded)
+            {
+                _rigidbody.velocity = Vector2.zero;
                 _rigidbody.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+            }
         }
     }
 }

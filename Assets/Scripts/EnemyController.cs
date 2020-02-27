@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(HitFromPlayerDetector))]
@@ -22,10 +23,12 @@ public class EnemyController : MonoBehaviour
     Coroutine _cycleCoroutine;
     Rigidbody2D _rigidbody;
 
+    public static event Action PlayerHitted;
+
     // Start is called before the first frame update
     void Start()
     {
-        _goingLeft = Random.Range(0, 2) == 0 ? true : false;
+        _goingLeft = UnityEngine.Random.Range(0, 2) == 0 ? true : false;
 
         _interCycleWait = new WaitForSeconds(CycleEveryXSeconds);
 
@@ -46,7 +49,7 @@ public class EnemyController : MonoBehaviour
 
     void HandlePlayerTouchFromSide()
     {
-        (GameObject.FindGameObjectWithTag("Player")?.GetComponent(typeof(PlayerDamager)) as PlayerDamager)?.HandleDamage();
+        PlayerHitted?.Invoke();
     }
 
     IEnumerator RunMoveCycles()
@@ -54,7 +57,7 @@ public class EnemyController : MonoBehaviour
         while (true)
         {
             _idleCounter = 0;
-            _idleXCycles = Random.Range(1, MaxIdleCycles + 1);
+            _idleXCycles = UnityEngine.Random.Range(1, MaxIdleCycles + 1);
 
             while (_idleCounter < _idleXCycles)
             {
